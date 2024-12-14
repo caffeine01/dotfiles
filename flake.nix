@@ -37,8 +37,17 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, hyprland,... }@inputs: {
+    nixpkgs.overlays = [
+      (final: prev: {
+        hyprland = prev.hyprland.overrideAttrs (oldAttrs: {
+          patches = (oldAttrs.patches or []) ++ [ ./patch.txt ];
+          });
+       })
+    ];
+
     nixosConfigurations.envy = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/envy
