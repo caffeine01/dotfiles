@@ -14,7 +14,13 @@
      QT_QPA_PLATFORM = "wayland";
      SDL_VIDEODRIVER = "wayland";
      XDG_SESSION_TYPE = "wayland";
-  };    # EDITOR = "emacs";
+  };
+
+  security = {
+    polkit.enable = true;
+    pam.services.astal-auth = {};
+  };
+
   
   programs.fish = {
     enable = true;
