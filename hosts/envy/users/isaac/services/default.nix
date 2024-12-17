@@ -4,5 +4,6 @@
     ./kanshi.nix
     ./polkit-agent.nix
     ./wlsunset.nix
+    ./hyprpaper.nix
   ];
 }

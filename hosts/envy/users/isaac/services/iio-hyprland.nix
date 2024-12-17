@@ -8,7 +8,8 @@
     };
     Service = {
       ExecStart = ''${inputs.iio-hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default}/bin/iio-hyprland'';
-      Restart = "on-failure";
+      Restart = "always";
+      RestartSec = "10";
     };
     Install.WantedBy = [ "hyprland-session.target" "suspend.target" "hibernate.target" ];
   };

@@ -3,7 +3,6 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { config, lib, pkgs, inputs, ... }:
-
 {
   imports =
     [
@@ -232,7 +231,9 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { 
+      inherit inputs;
+    };
     users = {
       "isaac" = import ./users/isaac;
     };
@@ -253,7 +254,6 @@
     pkg-config
     home-manager
     jq
-    inputs.swww.packages.${pkgs.system}.swww
   ];
 
   nixpkgs.config.allowUnfree = true;

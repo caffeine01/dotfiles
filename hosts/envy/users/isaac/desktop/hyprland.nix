@@ -11,18 +11,18 @@
   config = {
     wayland.windowManager.hyprland = {
       systemd.enable = false;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       plugins = [
           inputs.hyprgrass.packages.${pkgs.system}.hyprgrass
-          #inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+          inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
           #"/etc/nixos/hosts/envy/hyprbars.so"
           inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
       ];
 
       settings = {
 
-        debug = {
-          disable_logs = false;
+        #thank u vaxry, very cool
+        cursor = {
+          warp_back_after_non_mouse_input = true; 
         };
 
         env = [
@@ -38,11 +38,11 @@
         ];
 
         exec = [
-          "systemctl --user restart waybar"
-          "systemctl --user restart iio-hyprland"
           "systemctl --user restart kanshi"
+          "systemctl --user restart iio-hyprland"
+          "systemctl --user restart hyprpaper"
+          "systemctl --user restart waybar"
           "systemctl --user restart wlsunset"
-          "set-wallpapers"
         ];
 
         monitor = [
