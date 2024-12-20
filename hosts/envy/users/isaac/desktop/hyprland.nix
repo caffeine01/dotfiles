@@ -25,6 +25,10 @@
           warp_back_after_non_mouse_input = true; 
         };
 
+        debug = {
+          disable_logs = false;
+        };
+
         env = [
           "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
           "XCURSOR_THEME,Adwaita"
@@ -139,7 +143,7 @@
 
         windowrulev2 = [
           "noborder, onworkspace:w[tv1] f[-1], floating:0"
-          "plugin:hyprbars:nobar, onworkspace:m[HDMI-A-1]"
+          "plugin:hyprbars:nobar, onworkspace:m[^(?!eDP-1$).*$]"
         ];
 
         bind = [
@@ -199,7 +203,7 @@
         ];
 
         bindl = [
-          ",switch:Lid Switch,exec,"
+          ",switch:Lid Switch,exec,lid-switch"
         ];
 
         plugin = {
@@ -216,6 +220,9 @@
               ", longpress:2, movewindow"
               ", longpress:3, resizewindow"
             ];
+            experimental = {
+              send_cancel = 1;
+            };
           };
 
           overview = {

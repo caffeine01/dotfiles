@@ -16,12 +16,6 @@
      XDG_SESSION_TYPE = "wayland";
   };
 
-  security = {
-    polkit.enable = true;
-    pam.services.astal-auth = {};
-  };
-
-  
   programs.fish = {
     enable = true;
     interactiveShellInit = ''

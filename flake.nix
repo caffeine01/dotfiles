@@ -14,7 +14,7 @@
     iio-hyprland.url = "github:JeanSchoeller/iio-hyprland";
 
     hyprpaper = {
-      url = "github:caffeine01/hyprpaper";
+      url = "github:hyprwm/hyprpaper";
     };
 
     hyprland-plugins = {

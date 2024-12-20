@@ -11,12 +11,12 @@
  in 
  {
     systemd.user.services.hyprpaper = {
-      Install = { WantedBy = [ "hyprland-session.target" ]; };
+      Install = { WantedBy = [ "graphical-session.target" ]; };
 
       Unit = {
         ConditionEnvironment = "WAYLAND_DISPLAY";
         Description = "hyprpaper";
-        PartOf = [ "hyprland-session.target" ];
+        PartOf = [ "graphical-session.target" ];
       };
 
       Service = {

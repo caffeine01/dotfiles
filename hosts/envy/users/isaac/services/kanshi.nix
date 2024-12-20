@@ -64,7 +64,6 @@ in
       }
 
       {
-
         profile = {
           name = "external-only";
           outputs = [
