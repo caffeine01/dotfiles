@@ -11,7 +11,6 @@ let
 in {
   systemd.services.powersave = {
     enable = true;
-
     description = "Apply power saving tweaks";
     wantedBy = ["multi-user.target"];
 

@@ -6,13 +6,10 @@
 {
   imports =
     [
-      inputs.home-manager.nixosModules.home-manager
       ./hardware-configuration.nix
       ./services
     ];
   
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   hardware = {
     bluetooth = {
       enable = true;
@@ -56,15 +53,6 @@
   #  };
   #};
 
-  programs.uwsm.enable = true;
-
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
-
   services.fwupd.enable = true;
   services.udisks2.enable = true;
   services.blueman.enable = true;
@@ -91,9 +79,6 @@
   #  })
   #];
 
-  # Make steam work
-  hardware.graphics.enable32Bit = true;
-
   services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
@@ -101,54 +86,13 @@
     desktopManager.gnome.enable = true;
   };
 
-  # Use the grub boot loader.
   boot = {
-    loader.systemd-boot.enable = false;
-    loader.efi.canTouchEfiVariables = true;
-    loader.grub = {
-      enable = true;
-      efiSupport = true;
-      devices=[ "nodev" ];
-    };
     initrd.kernelModules = [ "amdgpu" ];
-    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [ "amdgpu.dcdebugmask=0x10" ];
   };
 
-  # Networking shit
+  # laname
   networking.hostName = "envy";
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-  # Time zone.
-  time.timeZone = "Europe/London";
-  
-  fonts = {
-    fontDir.enable = true;
-    fontconfig.enable = true;
-    packages = with pkgs; [
-      fira-code
-      fira-code-symbols
-      dejavu_fonts
-      nerd-fonts.symbols-only
-    ];
-  };
-  
-  environment.gnome.excludePackages = with pkgs; [
-    baobab      # disk usage analyzer
-    cheese      # photo booth
-    eog         # image viewer
-    epiphany    # web browser
-    simple-scan # document scanner
-    totem       # video player
-    yelp        # help vprograms
-    evince      # document viewer
-    file-roller # archive manager
-    geary       # email client
-    seahorse    # password manager  
-    orca
-  ];
-
-  services.printing.enable = true;
 
   services.udev.extraHwdb = ''
     sensor:modalias:platform:HID-SENSOR-200011:dmi:*svn*HP*:*
@@ -156,113 +100,6 @@
     sensor:modalias:platform:lis3lv02d:dmi:*svn*HP*:*
       ACCEL_LOCATION=base
   '';
-
-  # Audio services.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    wireplumber.enable = true;
-    #extraConfig.pipewire."92-low-latency" = {
-    #  "context.properties" = {
-    #    "default.clock.rate" = 44100;
-    #    "default.clock.quantum" = 512;
-    #    "default.clock.min-quantum" = 512;
-    #    "default.clock.max-quantum" = 512;
-    #  };
-    #};
-  };
-  
-  #adb
-  programs.adb.enable = true;
-
-  programs.fish.enable = true;
-  users.users.isaac = {
-    isNormalUser = true;
-    description = "isaac";
-    extraGroups = [ "wheel" "adb" "libvirtd" "video" ];
-    shell = pkgs.fish;
-    packages = with pkgs; [
-        firefox 
-        obsidian
-        jetbrains.idea-community
-        jetbrains.rust-rover
-        android-studio
-        gnome-tweaks
-        xournalpp
-        jdk
-        gh
-        osu-lazer-bin
-        jetbrains.pycharm-community-bin
-        gnome-pomodoro
-        gnomeExtensions.pop-shell
-        easyeffects
-        cargo
-        rustc
-        rustup
-        openssl
-        tidal-hifi
-        wineWowPackages.full
-        winetricks
-        lutris
-        libreoffice
-        remmina
-        gnome-network-displays
-        opentabletdriver
-        virglrenderer
-        libGL
-        kitty
-        obs-studio
-        nodejs_23
-        grimblast
-        slurp
-        grim
-        wl-clipboard
-        pamixer
-        playerctl
-        ydotool
-        tofi
-        nwg-drawer
-        waybar
-	      anyrun
-        kanshi
-        gnome-control-center
-        gnome-calendar
-        wlogout
-        clang
-        clang-tools
-    ];
-  };
-
-  home-manager = {
-    extraSpecialArgs = { 
-      inherit inputs;
-    };
-    users = {
-      "isaac" = import ./users/isaac;
-    };
-    useGlobalPkgs = true;
-    useUserPackages = true;
-  };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    neovim
-    libinput
-    python3
-    gcc
-    git # DO NOT REMOVE!!!!!!!
-    pkg-config
-    home-manager
-    jq
-  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -306,7 +143,7 @@
   # so changing it will NOT upgrade your system.
   #
   # This value being lower than the current NixOS release does NOT mean your system is
-  # out of date, out of support, or vulnerable.
+  # out of date, out of support, or vulnerable.ls
   #
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
   # and migrated your data accordingly.

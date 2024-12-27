@@ -45,6 +45,8 @@
       };
       modules = [
         ./hosts/envy
+        ./users/isaac
+        ./common
         inputs.home-manager.nixosModules.default
       ];
     };
