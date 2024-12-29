@@ -1,6 +1,7 @@
 {
   imports = [
-    ./hyprland.nix
     ./xdg.nix
+    ./hyprland.nix
+    ./polkit-agent.nix
   ];
 }

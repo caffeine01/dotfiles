@@ -66,7 +66,7 @@
   #virt-manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
-  virtualisation.libvirtd.qemu.package = pkgs.qemu_full;
+  #virtualisation.libvirtd.qemu.package = pkgs.qemu_full;
 
   #qemu patch
   #nixpkgs.overlays = with pkgs; [
@@ -86,10 +86,18 @@
     desktopManager.gnome.enable = true;
   };
 
-  boot = {
-    initrd.kernelModules = [ "amdgpu" ];
+      boot = {
+        loader.systemd-boot.enable = false;
+        loader.efi.canTouchEfiVariables = true;
+        loader.grub = {
+            enable = true;
+            efiSupport = true;
+            devices=[ "nodev" ];
+        };
+        kernelPackages = pkgs.linuxPackages_latest;
+            initrd.kernelModules = [ "amdgpu" ];
     kernelParams = [ "amdgpu.dcdebugmask=0x10" ];
-  };
+    };
 
   # laname
   networking.hostName = "envy";

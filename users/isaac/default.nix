@@ -1,11 +1,9 @@
-{ config, pkgs, lib, inputs, ... }:
+{ pkgs, inputs, ... }:
 {
 
     imports = [
       inputs.home-manager.nixosModules.home-manager
     ];
-
-    programs.home-manager.enable = true;
 
         home-manager = {
         extraSpecialArgs = {
@@ -18,6 +16,7 @@
         useUserPackages = true;
     };
 
+  programs.fish.enable = true;
 
   users.users.isaac = {
     isNormalUser = true;
@@ -27,7 +26,7 @@
     packages = with pkgs; [
       firefox
       obsidian
-      jetbrains.idea-community
+      #jetbrains.idea-community //broken?
       jetbrains.rust-rover
       android-studio
       gnome-tweaks

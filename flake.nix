@@ -6,8 +6,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-       url = "github:nix-community/home-manager";
-       inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland.url = "github:hyprwm/hyprland";
@@ -37,17 +37,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs,... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
   {
     nixosConfigurations.envy = nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs;
       };
       modules = [
+        ./common/system
         ./hosts/envy
-        ./users/isaac
-        ./common
-        inputs.home-manager.nixosModules.default
+        inputs.home-manager.nixosModules.home-manager
+        (import ./modules/isaac.nix {
+          pkgs = nixpkgs.pkgs;
+          commonHomeManagerConfig =  ./common/home;
+          machineHomeManagerConfig =  ./hosts/envy/home;
+          enableHomeManager = true;
+        })
       ];
     };
   };

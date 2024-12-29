@@ -9,7 +9,7 @@ in {
   systemd.services.reset-sfh = {
     enable = true;
     
-    description = "Resets AMD Sensor Fusion Hub PCI device.";
+    description = "Reset for AMD Sensor Fusion Hub PCI device.";
     after = [ "multi-user.target" "suspend.target" "hibernate.target" ];
     wantedBy = [ "multi-user.target" "suspend.target" "hibernate.target" ];
     

@@ -20,6 +20,10 @@
                   "eDP-1,1920x1080@60,0x0,1"
                 ];
 
+                        windowrulev2 = [
+          "plugin:hyprbars:nobar, onworkspace:m[^(?!eDP-1$).*$]"
+        ];
+
                           # Built in HP touch shit
                         device = [
                           {

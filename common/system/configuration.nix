@@ -1,5 +1,6 @@
 { config, lib, pkgs, inputs, ... }:
 {
+
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
     # Hooperlond
@@ -20,18 +21,6 @@
         displayManager.gdm.enable = true;
         displayManager.gdm.wayland = true;
         desktopManager.gnome.enable = true;
-    };
-
-    # grub supremacy
-    boot = {
-        loader.systemd-boot.enable = false;
-        loader.efi.canTouchEfiVariables = true;
-        loader.grub = {
-            enable = true;
-            efiSupport = true;
-            devices=[ "nodev" ];
-        };
-        kernelPackages = pkgs.linuxPackages_latest;
     };
 
     # network manager 
@@ -102,6 +91,6 @@
         home-manager
         jq
     ];
-    
+
     nixpkgs.config.allowUnfree = true;
 }

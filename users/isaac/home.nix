@@ -6,4 +6,5 @@
     ./services
     ../../common/home
   ];
+  home.stateVersion = "24.11";
 }
