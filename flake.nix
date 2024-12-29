@@ -41,7 +41,7 @@
   {
     # envy
     nixosConfigurations = {
-      nixpkgs.lib.genAttrs ["envy"] (hostName: nixpkgs.lib.nixosSystem {
+      envy = nixpkgs.lib.genAttrs ["envy"] (hostName: nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs hostName;
       };
@@ -57,7 +57,7 @@
       ];
     });
 
-      nixpkgs.lib.genAttrs ["aorus"] (hostName: nixpkgs.lib.nixosSystem {
+    aorus = nixpkgs.lib.genAttrs ["aorus"] (hostName: nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs hostName;
       };
@@ -73,7 +73,7 @@
       ];
     });
 
-    }
+    };
   };
 
   #soon
