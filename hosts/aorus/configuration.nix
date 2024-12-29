@@ -25,7 +25,7 @@
   #virt-manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
-  virtualisation.libvirtd.qemu.package = pkgs.qemu_full;
+  #virtualisation.libvirtd.qemu.package = pkgs.qemu_full;
 
   #qemu patch
   #nixpkgs.overlays = with pkgs; [
