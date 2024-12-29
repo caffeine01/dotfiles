@@ -142,11 +142,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1735343815,
-        "narHash": "sha256-p7IJP/97zJda/wwCn1T2LJBz4olF5LjNf4uwhuyvARo=",
+        "lastModified": 1735381016,
+        "narHash": "sha256-CyCZFhMUkuYbSD6bxB/r43EdmDE7hYeZZPTCv0GudO4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b7a7cd5dd1a74a9fe86ed4e016f91c78483b527a",
+        "rev": "10e99c43cdf4a0713b4e81d90691d22c6a58bdf2",
         "type": "github"
       },
       "original": {
@@ -249,11 +249,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1734643652,
-        "narHash": "sha256-gnxQWeIitwduGalKZgO21B+7fJAnFRl2nlmPzzKoWno=",
+        "lastModified": 1735446832,
+        "narHash": "sha256-hem1Sr6bPEV4DFazWwbWcDlnfeCOGTHF5bE1/00lcCQ=",
         "owner": "horriblename",
         "repo": "hyprgrass",
-        "rev": "b2a1da139bbb4e12d67c9c1569a32ce54f5ebc6b",
+        "rev": "8a66a38e25e0b777ff217af7c9044e6eec4fac10",
         "type": "github"
       },
       "original": {
@@ -278,11 +278,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1735336272,
-        "narHash": "sha256-kPRvGB80n5Nmqw17z+im4+ssDFGOfQSnP2LKQNdprBs=",
+        "lastModified": 1735473418,
+        "narHash": "sha256-9JEwMOvq3/eRVo4WTv0VNhRyrZJh51pJgKumwNUuai4=",
         "owner": "hyprwm",
         "repo": "hyprland",
-        "rev": "c600e1aaff293303c8256aca7d2889fc4289e8c2",
+        "rev": "3f40d6d9361d0c5fec558b7549e58203fbe5cbd7",
         "type": "github"
       },
       "original": {
@@ -308,15 +308,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1734485665,
-        "narHash": "sha256-bHdCIyADBDBwsSnj38IJH2DkZYcUw75E62meYqrgdUY=",
-        "owner": "caffeine01",
+        "lastModified": 1735295819,
+        "narHash": "sha256-iHDDF1kj+wX7fHGTgKaM6rli6+O8mVFNmpypo+SgnNs=",
+        "owner": "hyprwm",
         "repo": "hyprland-plugins",
-        "rev": "683466d7e4c2fda319ae859e53230730f5bb58e6",
+        "rev": "a41bcdccac7d3fe220b3a8519633f0a812da3439",
         "type": "github"
       },
       "original": {
-        "owner": "caffeine01",
+        "owner": "hyprwm",
         "repo": "hyprland-plugins",
         "type": "github"
       }

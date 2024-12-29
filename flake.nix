@@ -18,7 +18,7 @@
     };
 
     hyprland-plugins = {
-      url = "github:caffeine01/hyprland-plugins";
+      url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland"; 
     };
 
@@ -32,13 +32,14 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-     anyrun = {
+    anyrun = {
       url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
   outputs = { self, nixpkgs, ... }@inputs:
   {
+    # envy
     nixosConfigurations.envy = nixpkgs.lib.nixosSystem {
       specialArgs = {
         inherit inputs;
@@ -46,14 +47,15 @@
       modules = [
         ./common/system
         ./hosts/envy
+        ./modules/isaac.nix
         inputs.home-manager.nixosModules.home-manager
-        (import ./modules/isaac.nix {
-          pkgs = nixpkgs.pkgs;
-          commonHomeManagerConfig =  ./common/home;
-          machineHomeManagerConfig =  ./hosts/envy/home;
-          enableHomeManager = true;
-        })
+        {
+          isaac.enable = true;
+          isaac.useHomeManager = true;
+        }
       ];
     };
   };
+
+  #soon
 }

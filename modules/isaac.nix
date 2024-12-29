@@ -1,15 +1,37 @@
-{  pkgs, commonHomeManagerConfig ? {}, machineHomeManagerConfig ? {}, enableHomeManager ? false, ... }:
-
+{ pkgs, lib, config, ... }:
+with lib;
+let
+  cfg = config.isaac;
+in
 {
+  options.isaac = {
+    enable = mkEnableOption "enable the preconfigured 'isaac' user.";
+    useHomeManager = mkOption {
+      type = types.bool;
+      default = false;
+    };
+  };
 
-  imports = [ ./user.nix {
-      inherit pkgs commonHomeManagerConfig machineHomeManagerConfig enableHomeManager;
-      userName = "isaac";
-      description = "ickle pickle sickle cell";
-      shell = pkgs.fish;
-      extraGroups = [ "wheel" "adb" "libvirtd" "video" ];
-            systemPackages = with pkgs; [ 
-                    firefox
+  imports = [ ./user.nix ];
+
+  config = mkIf cfg.enable {
+    programs.fish.enable = true;
+    userModule = {
+    enableHomeManager = cfg.useHomeManager;
+    homeManagerConfig = mkMerge [
+      {
+        imports = [
+          ../common/home
+          ../hosts/envy/home
+        ];
+      }
+    ];
+    userName = "isaac";
+    description = "ickle pickle sickle cell";
+    shell = pkgs.fish;
+    extraGroups = [ "wheel" "adb" "libvirtd" "video" ];
+    userPackages = with pkgs; [ 
+      firefox
       obsidian
       jetbrains.rust-rover
       android-studio
@@ -54,10 +76,9 @@
       gnome-control-center
       gnome-calendar
       wlogout
-      clangf
+      clang
       clang-tools
-            ];
-          }
-          ];
-  programs.fish.enable = true;
+    ];
+    };
+  };
 }
