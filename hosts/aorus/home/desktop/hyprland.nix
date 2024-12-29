@@ -1,13 +1,13 @@
-{ config, ... }:
+{ inputs, pkgs, ... }:
 {
-  config = {
     wayland.windowManager.hyprland = {
-      plugins = [
+        plugins = [
           inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-      ];
-      monitor = [
+        ];
+        settings = {
+        monitor = [
           "DP-1,preferred,auto,auto,bitdepth,10"
-      ];
+        ];
+      };
     };
-  };
 }

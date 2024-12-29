@@ -37,44 +37,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
   {
-    # envy
+    nixosCommonSystem = hostName: nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { inherit inputs hostName; };
+      modules = [
+        ./common/system
+        ./hosts/${hostName}
+        ./modules/isaac.nix
+        home-manager.nixosModules.home-manager
+        {
+          isaac.enable = true;
+          isaac.useHomeManager = true;
+        }
+      ];
+    };
+
     nixosConfigurations = {
-      envy = nixpkgs.lib.genAttrs ["envy"] (hostName: nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs hostName;
-      };
-      modules = [
-        ./common/system
-        ./hosts/${hostName}
-        ./modules/isaac.nix
-        inputs.home-manager.nixosModules.home-manager
-        {
-          isaac.enable = true;
-          isaac.useHomeManager = true;
-        }
-      ];
-    });
-
-    aorus = nixpkgs.lib.genAttrs ["aorus"] (hostName: nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs hostName;
-      };
-      modules = [
-        ./common/system
-        ./hosts/${hostName}
-        ./modules/isaac.nix
-        inputs.home-manager.nixosModules.home-manager
-        {
-          isaac.enable = true;
-          isaac.useHomeManager = true;
-        }
-      ];
-    });
-
+      envy = self.nixosCommonSystem "envy";
+      aorus = self.nixosCommonSystem "aorus";
     };
   };
-
-  #soon
 }
