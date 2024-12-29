@@ -99,9 +99,6 @@
     kernelParams = [ "amdgpu.dcdebugmask=0x10" ];
     };
 
-  # laname
-  networking.hostName = "envy";
-
   services.udev.extraHwdb = ''
     sensor:modalias:platform:HID-SENSOR-200011:dmi:*svn*HP*:*
       PROXIMITY_NEAR_LEVEL=100

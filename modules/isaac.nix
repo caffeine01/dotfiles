@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, hostName, ... }:
 with lib;
 let
   cfg = config.isaac;
@@ -22,7 +22,7 @@ in
       {
         imports = [
           ../common/home
-          ../hosts/envy/home
+          ../hosts/${hostName}/home
         ];
       }
     ];

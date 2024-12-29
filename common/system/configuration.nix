@@ -1,7 +1,9 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, hostName, ... }:
 {
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+    networking.hostName = hostName;
 
     # Hooperlond
     programs.uwsm.enable = true;

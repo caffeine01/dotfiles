@@ -40,13 +40,14 @@
   outputs = { self, nixpkgs, ... }@inputs:
   {
     # envy
-    nixosConfigurations.envy = nixpkgs.lib.nixosSystem {
+    nixosConfigurations = {
+      nixpkgs.lib.genAttrs ["envy"] (hostName: nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit inputs;
+        inherit inputs hostName;
       };
       modules = [
         ./common/system
-        ./hosts/envy
+        ./hosts/${hostName}
         ./modules/isaac.nix
         inputs.home-manager.nixosModules.home-manager
         {
@@ -54,7 +55,25 @@
           isaac.useHomeManager = true;
         }
       ];
-    };
+    });
+
+      nixpkgs.lib.genAttrs ["aorus"] (hostName: nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit inputs hostName;
+      };
+      modules = [
+        ./common/system
+        ./hosts/${hostName}
+        ./modules/isaac.nix
+        inputs.home-manager.nixosModules.home-manager
+        {
+          isaac.enable = true;
+          isaac.useHomeManager = true;
+        }
+      ];
+    });
+
+    }
   };
 
   #soon
