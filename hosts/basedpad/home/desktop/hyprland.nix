@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, lib, ... }:
 {
   wayland.windowManager.hyprland = {
     plugins = [
@@ -13,10 +13,11 @@
       ];
 
       decoration = {
-        shadow.enabled = false;
-	blur.enabled = false;
-	animations.enabled = false;
+        shadow.enabled = lib.mkForce false;
+	blur.enabled = lib.mkForce false;
       };
+
+      animations.enabled = lib.mkForce false;
     };
   };
 }
