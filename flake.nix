@@ -57,6 +57,7 @@
     nixosConfigurations = {
       envy = self.nixosCommonSystem "envy";
       aorus = self.nixosCommonSystem "aorus";
+      basedpad = self.nixosCommonSystem "basedpad";
     };
   };
 }
