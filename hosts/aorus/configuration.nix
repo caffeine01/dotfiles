@@ -48,6 +48,7 @@
       devices=[ "nodev" ];
     };
     initrd.kernelModules = [ "amdgpu" ];
+    kernelParams = [ "processor.max_cstate=5" ]; # lmao
     kernelPackages = pkgs.linuxPackages_latest;
   };
   
