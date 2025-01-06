@@ -9,7 +9,7 @@
         vfr = true;
       };
       monitor = [
-        "LVDS-1,1920x1080@60,0x0,1"          
+        "LVDS-1,1920x1080@60,0x0,1.25,vrr,1"          
       ];
 
       decoration = {
