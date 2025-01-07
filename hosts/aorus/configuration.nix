@@ -13,6 +13,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   hardware = {
+    enableRedistributableFirmware = true;
     opentabletdriver = {
       enable = true;
       daemon.enable = true;
@@ -48,22 +49,14 @@
       devices=[ "nodev" ];
     };
     initrd.kernelModules = [ "amdgpu" ];
-    kernelParams = [ "processor.max_cstate=5" ]; # lmao
+    kernelParams = [ "processor.max_cstate=5" "amd_pstate=guided" ]; # lmao
     kernelPackages = pkgs.linuxPackages_latest;
   };
+  powerManagement.enable = true;
+  powerManagement.cpuFreqGovernor = "schedutil";
   
-  services.printing.enable = true;
-
   # Audio services.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
   services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-    wireplumber.enable = true;
     extraConfig.pipewire."92-low-latency" = {
       "context.properties" = {
         "default.clock.rate" = 48000;
@@ -77,14 +70,6 @@
   #adb
   programs.adb.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-    "dotnet-runtime-6.0.36"
-    "dotnet-sdk-wrapped-6.0.428"
-    "dotnet-sdk-6.0.428"
-  ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
