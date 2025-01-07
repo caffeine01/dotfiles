@@ -2,12 +2,10 @@
 {
   wayland.windowManager.hyprland = {
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      #inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
     ];
     settings = {
-      misc = {
-        vfr = true;
-      };
+      misc.vfr = true;
       monitor = [
         "LVDS-1,1920x1080@60,0x0,1.25,vrr,1"          
       ];

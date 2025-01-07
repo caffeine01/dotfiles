@@ -9,8 +9,6 @@
       ./hardware-configuration.nix
       ./services
     ];
-  
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   hardware = {
     enableRedistributableFirmware = true;
