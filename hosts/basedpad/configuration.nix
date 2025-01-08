@@ -50,6 +50,7 @@
       device="/dev/sda";
     };
   };
+  hardware.enableRedistributableFirmware = true;
   
   #adb
   programs.adb.enable = true;
