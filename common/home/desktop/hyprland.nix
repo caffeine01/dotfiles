@@ -181,7 +181,7 @@
                     hyprgrass-bind = [
                       ", edge:r:l, workspace, +1"
                       ", edge:d:u, exec, nwg-drawer"
-                      #", tap:1, exec, ydotool click 0xC0"
+                      ", tap:1, exec, ydotool click 0xC0"
                       ", swipe:3:u, overview:open"
                       ", tap:3, overview:close"
                     ];
