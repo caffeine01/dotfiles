@@ -3,7 +3,7 @@
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-    networking.hostName = hostName;
+    networking.hostName = hostName; # because obviously
 
     # Hooperlond
     programs.uwsm.enable = true;

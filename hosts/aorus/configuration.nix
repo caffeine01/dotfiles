@@ -54,6 +54,8 @@
   };
   powerManagement.enable = true;
   powerManagement.cpuFreqGovernor = "schedutil";
+
+  programs.coolercontrol.enable = true; #nzxt kraken
   
   # Audio services.
   services.pipewire = {
@@ -70,6 +72,8 @@
   #adb
   programs.adb.enable = true;
 
+  environment.systemPackages = [ pkgs.gparted ];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -81,7 +85,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

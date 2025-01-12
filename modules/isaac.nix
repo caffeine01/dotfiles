@@ -59,6 +59,7 @@ in
       virglrenderer
       libGL
       kitty
+      foot
       obs-studio
       nodejs_23
       grimblast

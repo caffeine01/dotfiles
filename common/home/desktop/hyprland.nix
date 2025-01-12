@@ -62,9 +62,9 @@
         general = {
           gaps_in = 4;
           gaps_out = 4;
-          border_size = 2;
-          "col.active_border" = "rgb(3c3836)";
-          "col.inactive_border" = "rgb(282828)";
+          border_size = 1;
+          "col.active_border" = "rgb(ebdbb2)";
+          "col.inactive_border" = "rgb(3c3836)";
         };
 
         dwindle = {
@@ -217,6 +217,13 @@
                       "rgb(3c3836), 25, , hyprctl dispatch fullscreen, rgb(ebdbb2)"
                       "rgb(3c3836), 25, 󰕔, hyprctl dispatch togglefloating, rgb(ebdbb2)"
                     ];
+                  };
+                  
+                  #idk 2bwm seemed pretty cool
+                  borders-plus-plus = {
+                    "col.border_1" = "rgb(282828)";
+                    border_size_1 = 4;
+                    natural_rounding = 0;
                   };
                 };
       };
