@@ -145,7 +145,7 @@
           "SUPER SHIFT,F,fullscreen"
           "SUPER,C,centerwindow"
           "SUPER SHIFT,R,exec,hyprctl reload"
-          "SUPER,grave,exec,nwg-drawer"
+          "SUPER,grave,exec,nwg-drawer --nofs"
           "SUPER,Y,exec,grimblast copy area"
 
           "SUPER SHIFT,left,movewindow,l"
