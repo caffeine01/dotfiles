@@ -69,7 +69,7 @@ in
       pamixer
       playerctl
       ydotool
-      tofi
+      fuzzel
       nwg-drawer
       waybar
       anyrun
