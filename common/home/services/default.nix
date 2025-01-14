@@ -1,6 +1,6 @@
 {
   imports = [
-    ./hyprpaper.nix
+    ./hyprpaper
     ./wlsunset.nix
   ];
 }

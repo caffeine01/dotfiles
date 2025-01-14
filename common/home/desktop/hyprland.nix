@@ -62,8 +62,8 @@
         general = {
           gaps_in = 4;
           gaps_out = 4;
-          border_size = 1;
-          "col.active_border" = "rgb(ebdbb2)";
+          border_size = 2;
+          "col.active_border" = "rgb(fe8019) rgb(ebdbb2) rgb(83a598) 45deg";
           "col.inactive_border" = "rgb(3c3836)";
         };
 
@@ -79,10 +79,10 @@
           shadow = {
             enabled = true;
             color = "rgba(000000BB)";
-            ignore_window = true;
+            ignore_window = false;
             offset = "0, 0";
-            range = 100;
-            render_power = 2;
+            range = 300;
+            render_power = 4;
             scale = 0.9;
           };
 
@@ -94,11 +94,13 @@
 
         animations = {
           enabled = true;
+          bezier = "quintic, 0.83, 0, 0.17, 1";
           animation = [
             "border, 1, 2, default"
             "fade, 1, 4, default"
             "windows, 1, 3, default, popin 80%"
             "workspaces, 1, 2, default, slide"
+            "borderangle, 1, 25, quintic"
           ];
         };
 
