@@ -3,8 +3,7 @@
     wayland.windowManager.hyprland = {
       systemd.enable = false;
       settings = {
-
-                debug = {
+        debug = {
           disable_logs = false;
         };
 
@@ -13,42 +12,40 @@
           warp_back_after_non_mouse_input = true;
         };
 
-
         env = [
           "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
           "XCURSOR_THEME,Adwaita"
           "XCURSOR_SIZE,24"
         ];
 
-                exec-once = [
-                  "uwsm finalize"
-                  "dbus-update-activation-environment --systemd --all"
-                ];
+        exec-once = [
+          "uwsm finalize"
+          "dbus-update-activation-environment --systemd --all"
+        ];
 
-                exec = [
-                  "systemctl --user restart hyprpaper"
-                  "systemctl --user restart waybar"
-                  "systemctl --user restart wlsunset"
-                ];
+        exec = [
+          "systemctl --user restart hyprpaper"
+          "systemctl --user restart waybar"
+          "systemctl --user restart wlsunset"
+        ];
 
-                monitor = [
-                  ", preferred, auto, 1"
-                ];
+        monitor = [
+          ", preferred, auto, 1"
+        ];
 
-                        input = {
-                          kb_layout = "us";
-                          follow_mouse = 1;
-                          touchpad = {
-                            natural_scroll = true;
-                          };
-                        };
+        input = {
+          kb_layout = "us";
+          follow_mouse = 1;
+          touchpad = {
+            natural_scroll = true;
+          };
+        };
                         
-                        gestures = {
-                          workspace_swipe = true;
-                          workspace_swipe_cancel_ratio = 0.01;
-                          workspace_swipe_fingers = 3;
-                        };
-
+        gestures = {
+          workspace_swipe = true;
+          workspace_swipe_cancel_ratio = 0.01;
+          workspace_swipe_fingers = 3;
+        };
 
         workspace = [
           "1, persistent:true"
@@ -116,7 +113,6 @@
 
         windowrulev2 = [
           "noborder, onworkspace:w[tv1] f[-1], floating:0"
-          "plugin:hyprbars:nobar, onworkspace:m[^(?!eDP-1$).*$]"
         ];
         
         bind = [
@@ -177,57 +173,53 @@
                         
 
 
-                plugin = {
-                  touch_gestures = {
-                    sensitivity = 10;
-                    hyprgrass-bind = [
-                      ", edge:r:l, workspace, +1"
-                      ", edge:d:u, exec, nwg-drawer"
-                      ", tap:1, exec, ydotool click 0xC0"
-                      ", swipe:3:u, overview:open"
-                      ", tap:3, overview:close"
+        plugin = {
+          touch_gestures = {
+            sensitivity = 10;
+            hyprgrass-bind = [
+              ", edge:r:l, workspace, +1"
+              ", edge:d:u, exec, nwg-drawer"
+              ", tap:1, exec, ydotool click 0xC0"
+              ", swipe:3:u, overview:open"
+              ", tap:3, overview:close"
+            ];
+            hyprgrass-bindm = [
+              ", longpress:2, movewindow"
+              ", longpress:3, resizewindow"
                     ];
-                    hyprgrass-bindm = [
-                      ", longpress:2, movewindow"
-                      ", longpress:3, resizewindow"
-                    ];
-                    experimental = {
-                      send_cancel = 1;
-                    };
-                  };
+            experimental = {
+              send_cancel = 1;
+            };
+          };
 
-                  overview = {
-                    reverseSwipe = true;
-                  };
+          overview = {
+            reverseSwipe = true;
+          };
 
-                  hyprbars = {
-                    # example config
-                    bar_height = 35;
-                    bar_color = "rgb(282828)";
-                    "col.text" = "rgb(ebdbb2)";
-                    bar_padding = 10;
-                    bar_button_padding = 10;
-                    bar_title_enabled = true;
-                    bar_text_align = "left";
-                    bar_part_of_window = true;
-                    bar_text_font = "Fira Code";
-
-                    # example buttons (R -> L)
-                    # hyprbars-button = color, size, on-click
-                    hyprbars-button = [
-                      "rgb(3c3836), 25, , hyprctl dispatch killactive, rgb(ebdbb2)"
-                      "rgb(3c3836), 25, , hyprctl dispatch fullscreen, rgb(ebdbb2)"
-                      "rgb(3c3836), 25, 󰕔, hyprctl dispatch togglefloating, rgb(ebdbb2)"
-                    ];
-                  };
+          hyprbars = {
+            bar_height = 35;
+            bar_color = "rgb(282828)";
+            "col.text" = "rgb(ebdbb2)";
+            bar_padding = 10;
+            bar_button_padding = 10;
+            bar_title_enabled = true;
+            bar_text_align = "left";
+            bar_part_of_window = true;
+            bar_text_font = "Fira Code";
+            hyprbars-button = [
+              "rgb(3c3836), 25, , hyprctl dispatch killactive, rgb(ebdbb2)"
+              "rgb(3c3836), 25, , hyprctl dispatch fullscreen, rgb(ebdbb2)"
+              "rgb(3c3836), 25, 󰕔, hyprctl dispatch togglefloating, rgb(ebdbb2)"
+            ];
+          };
                   
-                  #idk 2bwm seemed pretty cool
-                  borders-plus-plus = {
-                    "col.border_1" = "rgb(282828)";
-                    border_size_1 = 4;
-                    natural_rounding = 0;
-                  };
-                };
+          #idk 2bwm seemed pretty cool
+          borders-plus-plus = {
+            "col.border_1" = "rgb(282828)";
+            border_size_1 = 4;
+            natural_rounding = 0;
+          };
+        };
       };
     };
   };
