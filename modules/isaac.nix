@@ -33,6 +33,7 @@ in
     userPackages = with pkgs; [ 
       firefox
       obsidian
+      jetbrains.idea-community
       jetbrains.rust-rover
       android-studio
       gnome-tweaks
