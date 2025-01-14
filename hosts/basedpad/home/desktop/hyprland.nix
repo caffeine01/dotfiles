@@ -1,8 +1,12 @@
 { inputs, pkgs, lib, ... }:
+let
+  plugins = inputs.hyprland-plugins.packages.${pkgs.system};
+in
 {
   wayland.windowManager.hyprland = {
-    plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+    plugins = with plugins; [
+      hyprbars
+      borders-plus-plus
     ];
     settings = {
       misc.vfr = true;
