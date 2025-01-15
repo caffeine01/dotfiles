@@ -27,15 +27,6 @@
       inputs.hyprland.follows = "hyprland"; 
     };
 
-    Hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    anyrun = {
-      url = "github:anyrun-org/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
   {

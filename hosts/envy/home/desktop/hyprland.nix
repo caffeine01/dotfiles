@@ -1,9 +1,13 @@
-{ inputs, pkgs, lib, ... }: {
+{ inputs, pkgs, lib, ... }:
+let
+  hyprland-plugins = inputs.hyprland-plugins.packages.${pkgs.system};
+in
+{
   config.wayland.windowManager.hyprland = {
     plugins = [
       inputs.hyprgrass.packages.${pkgs.system}.hyprgrass
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-      inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+      hyprland-plugins.hyprbars
+      hyprland-plugins.borders-plus-plus
     ];
     settings = lib.mkMerge [
       {
@@ -13,10 +17,10 @@
         ];
         monitor = [
           "HDMI-A-1,preferred,1920x0,auto-right,bitdepth,10"
-          "eDP-1,1920x1080@60,0x0,1"
+          "eDP-1,1920x1080@60,0x0,1,vrr,1"
         ];
         windowrulev2 = [
-          "plugin:hyprbars:nobar, onworkspace:m[^(?!eDP-1$).*$]"
+          "plugin:hyprbars:nobar, onworkspace:m[HDMI-A-1]"
         ];
         device = [
           {

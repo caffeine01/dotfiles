@@ -10,10 +10,8 @@
       ./services
     ];
 
-  environment.systemPackages = with pkgs; [
-    firefox
-  ];    
-  
+  ryzen-fixes.enable = true; # enable the pstate fixes n whatnot
+
   hardware = {
     bluetooth = {
       enable = true;
@@ -83,25 +81,17 @@
   #  })
   #];
 
-  services.xserver = {
-    enable = true;
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = true;
-    desktopManager.gnome.enable = true;
-  };
-
-      boot = {
-        loader.systemd-boot.enable = false;
-        loader.efi.canTouchEfiVariables = true;
-        loader.grub = {
-            enable = true;
-            efiSupport = true;
-            devices=[ "nodev" ];
-        };
-        kernelPackages = pkgs.linuxPackages_latest;
-            initrd.kernelModules = [ "amdgpu" ];
-    kernelParams = [ "amdgpu.dcdebugmask=0x10" ];
+  boot = {
+    loader.systemd-boot.enable = false;
+    loader.efi.canTouchEfiVariables = true;
+    loader.grub = {
+      enable = true;
+      efiSupport = true;
+      devices=[ "nodev" ];
     };
+    kernelPackages = pkgs.linuxPackages_latest;
+    initrd.kernelModules = [ "amdgpu" ];
+  };
 
   services.udev.extraHwdb = ''
     sensor:modalias:platform:HID-SENSOR-200011:dmi:*svn*HP*:*
@@ -109,38 +99,6 @@
     sensor:modalias:platform:lis3lv02d:dmi:*svn*HP*:*
       ACCEL_LOCATION=base
   '';
-
-  nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-    "dotnet-runtime-6.0.36"
-    "dotnet-sdk-wrapped-6.0.428"
-    "dotnet-sdk-6.0.428"
-  ];
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

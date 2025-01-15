@@ -10,8 +10,9 @@
       ./services
     ];
 
+  ryzen-fixes.enable = true; # enable the pstate fixes n whatnot
+
   hardware = {
-    enableRedistributableFirmware = true;
     opentabletdriver = {
       enable = true;
       daemon.enable = true;
@@ -47,11 +48,8 @@
       devices=[ "nodev" ];
     };
     initrd.kernelModules = [ "amdgpu" ];
-    kernelParams = [ "processor.max_cstate=5" "amd_pstate=guided" ]; # lmao
     kernelPackages = pkgs.linuxPackages_latest;
   };
-  powerManagement.enable = true;
-  powerManagement.cpuFreqGovernor = "schedutil";
 
   programs.coolercontrol.enable = true; #nzxt kraken
   
