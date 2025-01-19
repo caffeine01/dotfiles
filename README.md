@@ -27,4 +27,5 @@
 
 ### Gruvbox - _overused, but so cozy!_
 ![gruvbox](https://github.com/user-attachments/assets/7dc9a3c8-1980-407e-ae59-79c52ff19b75)
-![image](https://github.com/user-attachments/assets/97e52ba9-4a82-4fc5-a353-6a2720204992)
+![image](https://github.com/user-attachments/assets/2a158b0a-2dcf-499e-a132-c3dd722118bd)
+
