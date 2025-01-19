@@ -7,6 +7,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      #./fixes
       ./services
     ];
 
@@ -81,7 +82,7 @@
   #  })
   #];
 
-  boot = {
+  boot = lib.mkForce {
     loader.systemd-boot.enable = false;
     loader.efi.canTouchEfiVariables = true;
     loader.grub = {
@@ -89,16 +90,23 @@
       efiSupport = true;
       devices=[ "nodev" ];
     };
+
     kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPatches = [
+    #  {
+        #name = "stop-all-kbz212615";
+        #patch = ./stop_all_kbz212615.patch;
+        #name = "clear_interrupts_kbz212615";
+        #patch = ./clear_interrupts_kbz212615.patch;
+    #  }
+    #];
     initrd.kernelModules = [ "amdgpu" ];
   };
 
-  services.udev.extraHwdb = ''
-    sensor:modalias:platform:HID-SENSOR-200011:dmi:*svn*HP*:*
-      PROXIMITY_NEAR_LEVEL=100
-    sensor:modalias:platform:lis3lv02d:dmi:*svn*HP*:*
-      ACCEL_LOCATION=base
-  '';
+  #services.udev.extraHwdb = ''
+    #sensor:modalias:platform:lis3lv02d:dmi:*svn*HP*:*
+    #  ACCEL_LOCATION=base
+  #'';
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.

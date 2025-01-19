@@ -71,7 +71,7 @@ in
       playerctl
       ydotool
       fuzzel
-      nwg-drawer
+      #nwg-drawer
       waybar
       anyrun
       kanshi
@@ -80,6 +80,7 @@ in
       wlogout
       clang
       clang-tools
+      pavucontrol
     ];
     };
   };

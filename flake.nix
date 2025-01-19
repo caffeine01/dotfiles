@@ -11,7 +11,7 @@
     };
 
     hyprland.url = "github:hyprwm/hyprland";
-    iio-hyprland.url = "github:JeanSchoeller/iio-hyprland";
+    iio-hyprland.url = "github:caffeine01/hyprrot";
 
     hyprpaper = {
       url = "github:hyprwm/hyprpaper";
@@ -25,6 +25,12 @@
     hyprgrass = {
       url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland"; 
+    };
+
+    nwg-drawer = {
+      url = "github:caffeine01/nwg-drawer?ref=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.url = "github:nix-systems/default-linux";
     };
 
   };

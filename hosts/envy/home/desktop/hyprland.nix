@@ -17,7 +17,7 @@ in
         ];
         monitor = [
           "HDMI-A-1,preferred,1920x0,auto-right,bitdepth,10"
-          "eDP-1,1920x1080@60,0x0,1,vrr,1"
+          "eDP-1,1920x1080@60,0x0,1"
         ];
         windowrulev2 = [
           "plugin:hyprbars:nobar, onworkspace:m[HDMI-A-1]"

@@ -1,36 +1,36 @@
 { pkgs, ... }:
 let
   laptopworkspaces = "${pkgs.writeShellScriptBin "laptopworkspaces" ''
-  hyprctl --batch "dispatch moveworkspacetomonitor 1 eDP-1; dispatch moveworkspacetomonitor 2 eDP-1; dispatch moveworkspacetomonitor 3 eDP-1; dispatch moveworkspacetomonitor 4 eDP-1; dispatch moveworkspacetomonitor 5 eDP-1; dispatch moveworkspacetomonitor 6 eDP-1;"
+    hyprctl --batch "dispatch moveworkspacetomonitor 1 eDP-1; dispatch moveworkspacetomonitor 2 eDP-1; dispatch moveworkspacetomonitor 3 eDP-1; dispatch moveworkspacetomonitor 4 eDP-1; dispatch moveworkspacetomonitor 5 eDP-1; dispatch moveworkspacetomonitor 6 eDP-1;"
   ''}/bin/laptopworkspaces";
   dualdisplayworkspaces = "${pkgs.writeShellScriptBin "dualdisplayworkspaces" ''
-  hyprctl --batch "dispatch moveworkspacetomonitor 1 HDMI-A-1; dispatch moveworkspacetomonitor 2 HDMI-A-1; dispatch moveworkspacetomonitor 3 HDMI-A-1; dispatch moveworkspacetomonitor 4 HDMI-A-1; dispatch moveworkspacetomonitor 5 HDMI-A-1; dispatch moveworkspacetomonitor 6 HDMI-A-1; "
+    hyprctl --batch "dispatch moveworkspacetomonitor 1 HDMI-A-1; dispatch moveworkspacetomonitor 2 HDMI-A-1; dispatch moveworkspacetomonitor 3 HDMI-A-1; dispatch moveworkspacetomonitor 4 HDMI-A-1; dispatch moveworkspacetomonitor 5 HDMI-A-1; dispatch moveworkspacetomonitor 6 HDMI-A-1; "
   ''}/bin/dualdisplayworkspaces";
   externalworkspaces = "${pkgs.writeShellScriptBin "externalworkspaces" ''
-  hyprctl --batch "dispatch moveworkspacetomonitor 1 HDMI-A-1; dispatch moveworkspacetomonitor 2 HDMI-A-1; dispatch moveworkspacetomonitor 3 HDMI-A-1; dispatch moveworkspacetomonitor 4 HDMI-A-1; dispatch moveworkspacetomonitor 5 HDMI-A-1; dispatch moveworkspacetomonitor 6 HDMI-A-1; "
+    hyprctl --batch "dispatch moveworkspacetomonitor 1 HDMI-A-1; dispatch moveworkspacetomonitor 2 HDMI-A-1; dispatch moveworkspacetomonitor 3 HDMI-A-1; dispatch moveworkspacetomonitor 4 HDMI-A-1; dispatch moveworkspacetomonitor 5 HDMI-A-1; dispatch moveworkspacetomonitor 6 HDMI-A-1; "
   ''}/bin/externalworkspaces";
   dual-display = "${pkgs.writeShellScriptBin "dual-display" ''
-          #!/usr/bin/env bash
+    #!/usr/bin/env bash
 
-        lid_state=$(cat /proc/acpi/button/lid/LID/state)
-        if [[ "$lid_state" == *"closed"* ]]; then
-          kanshictl switch external-only
-        else 
-          exec "${dualdisplayworkspaces}"
-        fi
+    lid_state=$(cat /proc/acpi/button/lid/LID/state)
+    if [[ "$lid_state" == *"closed"* ]]; then
+      kanshictl switch external-only
+    else 
+      exec "${dualdisplayworkspaces}"
+    fi
   ''}/bin/dual-display";
 in
 {
   systemd.user.services.kanshi = {
     Service = {
-        ExecStart = ''${pkgs.kanshi}/bin/kanshi'';
+      ExecStart = ''${pkgs.kanshi}/bin/kanshi'';
     };
   };
 
-    services.kanshi = {
+  services.kanshi = {
     enable = true;
     systemdTarget = "graphical-session.target";
-      settings = [
+    settings = [
       {
         profile = {
           name = "laptop-only";
@@ -45,7 +45,7 @@ in
         };
       }
 
-     {
+      {
         profile = {
           name = "dual-display";
           outputs = [
@@ -83,3 +83,5 @@ in
     ];
   };
 }
+
+

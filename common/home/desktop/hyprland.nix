@@ -3,10 +3,6 @@
     wayland.windowManager.hyprland = {
       systemd.enable = false;
       settings = {
-        debug = {
-          disable_logs = false;
-        };
-
         #thank u vaxry, very cool
         cursor = {
           warp_back_after_non_mouse_input = true;
@@ -170,26 +166,21 @@
           "SUPER,mouse:272,movewindow"
           "SUPER,mouse:273,resizewindow"
         ];
-                        
-
 
         plugin = {
           touch_gestures = {
             sensitivity = 10;
             hyprgrass-bind = [
-              ", edge:r:l, workspace, +1"
-              ", edge:d:u, exec, nwg-drawer"
-              ", tap:1, exec, ydotool click 0xC0"
+              ", edge:r:u, exec, light -A 5"
+              ", edge:r:d, exec, light -U 5"
+              ", edge:d:u, exec, uwsm app -- nwg-drawer -closebtn -closebtnleft"
               ", swipe:3:u, overview:open"
               ", tap:3, overview:close"
             ];
             hyprgrass-bindm = [
               ", longpress:2, movewindow"
               ", longpress:3, resizewindow"
-                    ];
-            experimental = {
-              send_cancel = 1;
-            };
+            ];
           };
 
           overview = {

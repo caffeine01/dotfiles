@@ -21,6 +21,7 @@ in
   };
 
   home.packages = [
+    inputs.nwg-drawer.packages.${pkgs.system}.default
     (lid-switch)
   ];
 }

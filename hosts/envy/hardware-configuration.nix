@@ -13,6 +13,9 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  # my laptop has an nvme ssd, so, naturally:
+  services.fstrim.enable = true;
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/89488117-cbcc-4073-8db9-91a5fdf5cea1";
       fsType = "ext4";
