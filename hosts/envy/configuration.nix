@@ -57,7 +57,6 @@
   #};
 
   services.fwupd.enable = true;
-  services.acpid.enable = true;
   services.thermald.enable = true;
   services.udisks2.enable = true;
   services.blueman.enable = true;
@@ -66,9 +65,6 @@
     lidSwitch = "suspend";
     lidSwitchDocked = "ignore";
     lidSwitchExternalPower = "ignore";
-    extraConfig = ''
-      LidSwitchIgnoreInhibited=no
-    '';
   };
 
   #virt-manager
@@ -107,11 +103,6 @@
     #];
     initrd.kernelModules = [ "amdgpu" ];
   };
-
-  services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x1022", ATTR{device}=="0x15e4", \
-    RUN+="${pkgs.bash}/bin/bash -c 'echo on > /sys/bus/pci/devices/$devpath/power/control'}"
-  '';
 
   #services.udev.extraHwdb = ''
     #sensor:modalias:platform:lis3lv02d:dmi:*svn*HP*:*
