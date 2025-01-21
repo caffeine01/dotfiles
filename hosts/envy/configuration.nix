@@ -11,7 +11,7 @@
       ./services
     ];
 
-  ryzen-fixes.enable = true; # enable the pstate fixes n whatnot
+  ryzen-settings.enable = true; # enable the pstate fixes n whatnot
 
   hardware = {
     bluetooth = {

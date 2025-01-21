@@ -1,6 +1,6 @@
 {
   imports = [
     ./configuration.nix
-    ./ryzen-fixes.nix
+    ./ryzen-settings.nix
   ];
 }

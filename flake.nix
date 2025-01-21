@@ -45,6 +45,7 @@
         ./modules/isaac.nix
         home-manager.nixosModules.home-manager
         {
+          common-system.enable = true;
           isaac.enable = true;
           isaac.useHomeManager = true;
         }
