@@ -5,6 +5,9 @@ let
     echo 0 > /proc/sys/kernel/nmi_watchdog
 
     for i in /sys/bus/pci/devices/*; do
+      if [ "$i" = "/sys/bus/pci/devices/0000:04:00.7" ]; then
+        continue
+      fi
       echo auto > "$i/power/control"
     done
   '';
