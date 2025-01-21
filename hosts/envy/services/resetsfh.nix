@@ -2,7 +2,8 @@
 {
   systemd.services.reset-sfh = {
     enable = true;
-    
+
+    #don't even ask
     description = "autoreload amd_sfh kernel driver";
     before = [ "iio-sensor-proxy.service" "suspend.target" ];
     after = [ "multi-user.target" "hibernate.target" ];

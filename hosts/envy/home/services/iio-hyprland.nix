@@ -4,7 +4,7 @@
     Unit = {
       Description = "Hyprland iio service";
       Before = [ "suspend.target" ];
-      After = [ "iio-sensor-proxy.service" "graphical-session.target" ]; #"suspend.target" "hibernate.target" ];
+      After = [ "iio-sensor-proxy.service" "graphical-session.target" ]; 
     };
     Service = {
       ExecStartPre = "/bin/sh -c 'while ! ${pkgs.systemd}/bin/systemctl --system is-active iio-sensor-proxy.service; do sleep 0.5; done'";
