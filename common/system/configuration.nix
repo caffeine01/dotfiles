@@ -39,11 +39,11 @@ in
     # Make steam work
     hardware.graphics.enable32Bit = true;
 
-    # Fallback
     services.xserver = {
       enable = true;
       displayManager.gdm.enable = true;
       displayManager.gdm.wayland = true;
+      # Fallback
       desktopManager.gnome.enable = true;
     };
 

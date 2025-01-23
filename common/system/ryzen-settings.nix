@@ -10,7 +10,10 @@ in
 
   config = mkIf cfg.enable {
     hardware.cpu.amd.updateMicrocode = true;
-    boot.kernelParams = [ "processor.max_cstate=5" "amd_pstate=guided" ]; # lmao
+    boot.blacklistedKernelModules = [ "k10temp" ];
+    boot.extraModulePackages = [ config.boot.kernelPackages.zenpower ];
+    boot.kernelModules = mkMerge [ [ "zenpower" ] ];
+    boot.kernelParams = mkMerge [ [ "processor.max_cstate=5" "amd_pstate=active" ] ];
     powerManagement.enable = true;
     powerManagement.cpuFreqGovernor = "schedutil";
   };

@@ -8,7 +8,6 @@
       initrd.prepend = [ "${./acpi_override.cpio}" ];
       kernelParams = [ 
         "mem_sleep_default=deep"
-        "idle=nomwait"
         ];
       };
   } ];

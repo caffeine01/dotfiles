@@ -1,5 +1,6 @@
+{ lib, ... }:
 {
-  config = {
+  config = lib.mkMerge [ {
     wayland.windowManager.hyprland = {
       systemd.enable = false;
       settings = {
@@ -71,12 +72,12 @@
 
           shadow = {
             enabled = true;
-            color = "rgba(000000BB)";
+            color = "rgba(32,32,32,1)";
             ignore_window = false;
             offset = "0, 0";
-            range = 300;
-            render_power = 4;
-            scale = 0.9;
+            range = 8;
+            render_power = 2;
+            scale = 1;
           };
 
           blur = {
@@ -87,13 +88,14 @@
 
         animations = {
           enabled = true;
-          bezier = "quintic, 0.83, 0, 0.17, 1";
+          bezier = "ease, 0.25, 0.1, 0.25, 1";
           animation = [
-            "border, 1, 2, default"
-            "fade, 1, 4, default"
-            "windows, 1, 3, default, popin 80%"
-            "workspaces, 1, 2, default, slide"
-            "borderangle, 1, 25, quintic"
+            "border, 1, 2, ease"
+            "fade, 1, 3, ease"
+            "windows, 1, 2, ease, popin 80%"
+            "windowsMove, 1, 2, default, popin 80%"
+            "workspaces, 1, 1.85, ease, slide"
+            "borderangle, 1, 20, ease, once"
           ];
         };
 
@@ -213,5 +215,5 @@
         };
       };
     };
-  };
+  } ];
 }

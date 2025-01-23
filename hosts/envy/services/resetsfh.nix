@@ -1,20 +1,29 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
-  systemd.services.reset-sfh = {
-    enable = true;
+  config = {
+    systemd.services = {
+      sfh-unload = {
+        description = "Unload amd_sfh kernel driver after boot and before sleep";
+        after = [ "multi-user.target" ];
+        before = [ "sleep.target" "iio-sensor-proxy.service" ];
+        wantedBy = [ "multi-user.target" "sleep.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.kmod}/sbin/modprobe -r amd_sfh";
+          ExecPost = "${pkgs.coreutils}/bin/sleep 1";
+        };
+      };
 
-    #don't even ask
-    description = "autoreload amd_sfh kernel driver";
-    before = [ "iio-sensor-proxy.service" "suspend.target" ];
-    after = [ "multi-user.target" "hibernate.target" ];
-    wantedBy = [ "multi-user.target" "suspend.target" "hibernate.target" ];
-    upholds = [ "iio-sensor-proxy.service" ];
-    
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStartPre = "${pkgs.kmod}/sbin/modprobe -r amd_sfh";
-      ExecStart = "${pkgs.bash}/bin/bash -c 'sleep 1'";
-      ExecStartPost = "${pkgs.kmod}/sbin/modprobe amd_sfh";
+      sfh-reload = {
+        description = "Reload amd_sfh kernel driver after boot and after wake";
+        before = [ "iio-sensor-proxy.service" ];
+        after = [ "sfh-unload.service" "multi-user.target" "hibernate.target" "suspend.target" ];
+        wantedBy = [ "multi-user.target" "hibernate.target" "suspend.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart = "${pkgs.kmod}/sbin/modprobe amd_sfh";
+        };
+      };
     };
   };
 }
