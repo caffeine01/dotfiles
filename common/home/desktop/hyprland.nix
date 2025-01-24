@@ -88,14 +88,18 @@
 
         animations = {
           enabled = true;
-          bezier = "ease, 0.25, 0.1, 0.25, 1";
+          bezier = [
+            "ease, 0.25, 0.1, 0.25, 1"
+            "easeIn, 0.42, 0, 1, 1"
+            "easeOut, 0, 0, 0.58, 1"
+          ];
           animation = [
             "border, 1, 2, ease"
-            "fade, 1, 3, ease"
-            "windows, 1, 2, ease, popin 80%"
-            "windowsMove, 1, 2, default, popin 80%"
-            "workspaces, 1, 1.85, ease, slide"
             "borderangle, 1, 20, ease, once"
+            "fade, 1, 2, ease"
+            "windows, 1, 2, ease, popin 80%"
+            "windowsMove, 1, 2, easeOut"
+            "workspaces, 1, 2, easeOut, slide"
           ];
         };
 
