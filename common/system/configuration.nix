@@ -3,15 +3,14 @@
   lib,
   pkgs,
   inputs,
-  hostName,
   ...
 }:
 with lib;
 let
-  cfg = config.common-system;
+  cfg = config.commonSystem;
 in
 {
-  options.common-system = {
+  options.commonSystem = {
     enable = mkEnableOption "Enables the common system configuration.";
   };
 
@@ -21,8 +20,6 @@ in
       "nix-command"
       "flakes"
     ];
-
-    networking.hostName = hostName; # because obviously
 
     hardware.enableRedistributableFirmware = true; # why would you not want this enabled lmao
 

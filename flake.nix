@@ -18,7 +18,7 @@
     };
 
     hyprland-plugins = {
-      url = "github:caffeine01/hyprland-plugins";
+      url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland"; 
     };
 
@@ -36,16 +36,18 @@
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
   {
-    nixosCommonSystem = hostName: nixpkgs.lib.nixosSystem {
+    nixosCommonSystem = host: let
+      hostConfig = if host ? hostConfig then host.hostConfig else if host ? hostName then ./hosts/${host.hostName} else null;
+    in  nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit inputs hostName; };
+      specialArgs = { inherit inputs; };
       modules = [
-        ./common/system
-        ./hosts/${hostName}
-        ./modules/isaac.nix
         home-manager.nixosModules.home-manager
+        ./modules/isaac.nix
+        ./modules/host.nix 
         {
-          common-system.enable = true;
+          inherit host;
+          imports = [ hostConfig ];
           isaac.enable = true;
           isaac.useHomeManager = true;
         }
@@ -53,9 +55,24 @@
     };
 
     nixosConfigurations = {
-      envy = self.nixosCommonSystem "envy";
-      aorus = self.nixosCommonSystem "aorus";
-      basedpad = self.nixosCommonSystem "basedpad";
+      envy = self.nixosCommonSystem {
+        hostName = "envy";
+        common = true;
+        laptop = true;
+        ryzen = true;
+      };
+      aorus = self.nixosCommonSystem {
+        hostName = "aorus";
+        common = true;
+        laptop = false;
+        ryzen = true;
+      };
+      basedpad = self.nixosCommonSystem {
+        hostName = "basedpad";
+        common = true;
+        laptop = true;
+        ryzen = false;
+      };
     };
   };
 }

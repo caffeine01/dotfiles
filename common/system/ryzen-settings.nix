@@ -1,20 +1,21 @@
-{ pkgs, lib, config, hostName, ... }:
+{ pkgs, lib, config, ... }:
 with lib;
 let
   cfg = config.ryzen-settings;
+  pstate = if config.host.laptop then "guided" else "active";
 in
 {
   options.ryzen-settings = {
-    enable = mkEnableOption "Enable ryzen power fixes.";
+    enable = mkEnableOption "Enable various ryzen-specific tweaks.";
   };
 
   config = mkIf cfg.enable {
-    hardware.cpu.amd.updateMicrocode = true;
-    boot.blacklistedKernelModules = [ "k10temp" ];
-    boot.extraModulePackages = [ config.boot.kernelPackages.zenpower ];
+    hardware.cpu.amd.updateMicrocode = mkDefault true;
+    boot.blacklistedKernelModules = mkMerge [ [ "k10temp" ] ];
+    boot.extraModulePackages = mkMerge [ [ config.boot.kernelPackages.zenpower ] ];
     boot.kernelModules = mkMerge [ [ "zenpower" ] ];
-    boot.kernelParams = mkMerge [ [ "processor.max_cstate=5" "amd_pstate=active" ] ];
-    powerManagement.enable = true;
-    powerManagement.cpuFreqGovernor = "schedutil";
+    boot.kernelParams = mkMerge [ [ "processor.max_cstate=5" "amd_pstate=${pstate}" ] ];
+    powerManagement.enable = mkDefault true;
+    powerManagement.cpuFreqGovernor = mkDefault "schedutil";
   };
 }

@@ -1,4 +1,4 @@
-{ pkgs, lib, config, hostName, ... }:
+{ pkgs, lib, config, ... }:
 with lib;
 let
   cfg = config.isaac;
@@ -21,8 +21,10 @@ in
     homeManagerConfig = mkMerge [
       {
         imports = [
-          ../common/home
-          ../hosts/${hostName}/home
+          (
+            if config.host.common then ../common/home else null
+          )
+          (config.host.hostHome)
         ];
       }
     ];

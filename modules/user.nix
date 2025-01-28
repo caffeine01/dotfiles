@@ -1,7 +1,7 @@
 { lib, config, inputs, ... }:
 with lib;
 let 
-cfg = config.userModule;
+  cfg = config.userModule;
 in
 {
   options.userModule = {

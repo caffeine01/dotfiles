@@ -14,8 +14,6 @@
       ./hardware-configuration.nix
     ];
 
-    ryzen-settings.enable = true; # enable the pstate fixes n whatnot
-
     hardware = {
       bluetooth = {
         enable = true;

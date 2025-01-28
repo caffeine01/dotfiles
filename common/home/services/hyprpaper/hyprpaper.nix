@@ -15,7 +15,6 @@
       Unit = {
         ConditionEnvironment = "WAYLAND_DISPLAY";
         Description = "hyprpaper";
-        PartOf = [ "graphical-session.target" ];
       };
 
       Service = {

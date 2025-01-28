@@ -3,7 +3,7 @@
   systemd.user.services.iio-hyprland = { 
     Unit = {
       Description = "Hyprland iio service";
-      After = [ "post-resume.target" "graphical-session.target" ]; 
+      After = [ "post-resume.target" ]; 
     };
     Service = {
       ExecStartPre = "/bin/sh -c 'while [ ! -e /run/systemd/propagate/iio-sensor-proxy.service ]; do sleep 0.5; done'";
@@ -12,7 +12,7 @@
       RestartSec = "1";
     };
     Install = {
-      WantedBy = [ "graphical-session.target" "suspend.target" "hibernate.target" ];
+      WantedBy = [ "post-resume.target" ];
     };
   };
 }

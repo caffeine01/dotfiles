@@ -90,12 +90,13 @@
           enabled = true;
           bezier = [
             "ease, 0.25, 0.1, 0.25, 1"
+            "easeCirc, 0.85, 0, 0.15, 1"
             "easeIn, 0.42, 0, 1, 1"
             "easeOut, 0, 0, 0.58, 1"
           ];
           animation = [
-            "border, 1, 2, ease"
-            "borderangle, 1, 20, ease, once"
+            "border, 1, 1.5, ease"
+            "borderangle, 1, 30, easeCirc, once"
             "fade, 1, 2, ease"
             "windows, 1, 2, ease, popin 80%"
             "windowsMove, 1, 2, easeOut"
@@ -165,6 +166,7 @@
 
         layerrule = [
           "blur, waybar"
+          "ignorealpha 0.875, waybar"
           "blur, nwg-drawer"
         ];
 
