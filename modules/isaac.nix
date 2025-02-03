@@ -26,6 +26,7 @@ in
           )
           (config.host.hostHome)
         ];
+        commonHome.enable = config.host.common;
       }
     ];
     userName = "isaac";

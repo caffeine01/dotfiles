@@ -2,7 +2,8 @@
 with lib;
 let
   cfg = config.ryzen-settings;
-  pstate = if config.host.laptop then "guided" else "active";
+  isLaptop = config.host.laptop;
+  pstate = if isLaptop then "guided" else "active";
 in
 {
   options.ryzen-settings = {
@@ -14,7 +15,7 @@ in
     boot.blacklistedKernelModules = mkMerge [ [ "k10temp" ] ];
     boot.extraModulePackages = mkMerge [ [ config.boot.kernelPackages.zenpower ] ];
     boot.kernelModules = mkMerge [ [ "zenpower" ] ];
-    boot.kernelParams = mkMerge [ [ "processor.max_cstate=5" "amd_pstate=${pstate}" ] ];
+    boot.kernelParams = mkMerge [ [ "processor.max_cstate=5" "amd_pstate=${pstate}" ] (mkIf isLaptop [ "amdgpu.abmlevel=0" ])  ];
     powerManagement.enable = mkDefault true;
     powerManagement.cpuFreqGovernor = mkDefault "schedutil";
   };

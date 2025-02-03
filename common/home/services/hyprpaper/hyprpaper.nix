@@ -10,8 +10,6 @@
  in 
  {
     systemd.user.services.hyprpaper = {
-      Install = { WantedBy = [ "graphical-session.target" ]; };
-
       Unit = {
         ConditionEnvironment = "WAYLAND_DISPLAY";
         Description = "hyprpaper";
