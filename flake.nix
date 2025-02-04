@@ -45,11 +45,13 @@
         home-manager.nixosModules.home-manager
         ./modules/isaac.nix
         ./modules/host.nix 
+        ./modules/libadwaita-without-adwaita.nix
         {
           inherit host;
           imports = [ hostConfig ];
           isaac.enable = true;
           isaac.useHomeManager = true;
+          libadwaita-without-adwaita.enable = true;
         }
       ];
     };

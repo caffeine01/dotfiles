@@ -82,7 +82,8 @@
 
           blur = {
             enabled = true;
-            size = 5;
+            size = 4;
+            passes = 3;
           };
         };
 
@@ -115,6 +116,7 @@
         };
 
         windowrulev2 = [
+          "opacity 0.9 override 0.9 override 1.0 override, class:kitty"
           "noborder, onworkspace:w[tv1] f[-1], floating:0"
         ];
         
