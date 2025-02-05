@@ -4,6 +4,9 @@
     wayland.windowManager.hyprland = {
       systemd.enable = false;
       settings = {
+
+        experimental.xx_color_management_v4 = true;
+
         #thank u vaxry, very cool
         cursor = {
           warp_back_after_non_mouse_input = true;
