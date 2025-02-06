@@ -23,7 +23,7 @@
     };
 
     hyprgrass = {
-      url = "github:horriblename/hyprgrass"; # change when merged
+      url = "github:horriblename/hyprgrass";
       inputs.hyprland.follows = "hyprland"; 
     };
 
