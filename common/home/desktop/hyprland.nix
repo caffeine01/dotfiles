@@ -1,4 +1,7 @@
 { lib, ... }:
+let
+  blurrule = "opacity 0.9 override 0.9 override 1.0 override";
+in 
 {
   config = lib.mkMerge [ {
     wayland.windowManager.hyprland = {
@@ -119,7 +122,10 @@
         };
 
         windowrulev2 = [
-          "opacity 0.9 override 0.9 override 1.0 override, class:kitty"
+          "${blurrule}, class:kitty"
+          "${blurrule}, class:org.gnome.Nautilus"
+          "${blurrule}, class:org.gnome.Calendar"
+          "${blurrule}, class:obsidian"
           "noborder, onworkspace:w[tv1] f[-1], floating:0"
         ];
         
@@ -211,9 +217,9 @@
             bar_part_of_window = true;
             bar_text_font = "Fira Code";
             hyprbars-button = [
-              "rgb(3c3836), 25, , hyprctl dispatch killactive, rgb(ebdbb2)"
-              "rgb(3c3836), 25, , hyprctl dispatch fullscreen, rgb(ebdbb2)"
-              "rgb(3c3836), 25, 󰕔, hyprctl dispatch togglefloating, rgb(ebdbb2)"
+              "rgb(282828), 25, , hyprctl dispatch killactive, rgb(ebdbb2)"
+              "rgb(282828), 25, , hyprctl dispatch fullscreen, rgb(ebdbb2)"
+              "rgb(282828), 25, 󰕔, hyprctl dispatch togglefloating, rgb(ebdbb2)"
             ];
           };
                   

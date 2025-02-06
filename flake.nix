@@ -23,7 +23,7 @@
     };
 
     hyprgrass = {
-      url = "github:matt1432/hyprgrass?ref=chase-cbox"; # change when merged
+      url = "github:horriblename/hyprgrass"; # change when merged
       inputs.hyprland.follows = "hyprland"; 
     };
 
