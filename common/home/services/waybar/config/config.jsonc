@@ -1,0 +1,103 @@
+{
+  "layer": "bottom",
+  "modules-left": ["custom/launcher", "hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["bluetooth", "wireplumber", "network", "battery", "power-profiles-daemon", "backlight", "custom/wlogout"],
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+
+  "bluetooth": {
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias}",
+    "tooltip-format-connected-battery": "󰥉 {device_battery_percentage}%",
+    "format-off": "󰂲",
+    "format-on": "󰂯",
+    "format-disabled": "󰂲",
+    "on-click": "uwsm app -- blueman-manager"
+  },
+
+  "wireplumber": {
+    "tooltip": false,
+    "scroll-step": 5,
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 {volume}%",
+    "on-click": "uwsm app -- pavucontrol",
+    "on-click-right": "uwsm app -- easyeffects",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    }
+  },
+
+  "network": {
+    "tooltip": false,
+    "format-wifi": "{icon} {essid}",
+    "format-ethernet": "",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "on-click-right": "XDG_CURRENT_DESKTOP=GNOME uwsm app -- gnome-control-center wifi",
+    "on-click": "uwsm app -- kitty nmtui"
+  },
+
+  "backlight": {
+    "tooltip": false,
+    "format": " {}%",
+    "interval": 1,
+    "on-scroll-up": "light -A 5",
+    "on-scroll-down": "light -U 5"
+  },
+
+  "battery": {
+    "states": {
+      "full": 100,
+      "good": 95,
+      "decent": 50,
+      "warning": 30,
+      "critical": 20
+    },
+    "format": "{icon} {capacity}%",
+    "format-time": "{H} h {M} min",
+    "format-alt": "{icon} {time}",
+    "format-icons": ["", "", "", "", ""]
+  },
+
+  "clock": {
+    "format": " {:%H:%M}",
+    "format-alt": " {:%m-%d-%Y}",
+    "on-click-right": "uwsm app -- gnome-calendar"
+  },
+
+  "custom/launcher": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": ""
+    },
+    "on-click": "uwsm app -- nwg-drawer -nofs -closebtnleft -closebtn"
+  },
+
+  "custom/wlogout": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "⏻"
+    },
+    "on-click": "uwsm app -- wlogout"
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "default": "",
+      "active": ""
+    },
+    "sort-by-number": true
+  }
+}

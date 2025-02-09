@@ -32,7 +32,7 @@ in
     userName = "isaac";
     description = "ickle pickle sickle cell";
     shell = pkgs.fish;
-    extraGroups = [ "wheel" "adb" "libvirtd" "video" ];
+    extraGroups = [ "wheel" "adb" "libvirtd" "video" "adbusers" ];
     userPackages = with pkgs; [ 
       firefox
       obsidian
@@ -75,7 +75,6 @@ in
       ydotool
       fuzzel
       #nwg-drawer
-      waybar
       anyrun
       kanshi
       gnome-control-center

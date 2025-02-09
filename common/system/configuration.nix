@@ -55,6 +55,7 @@ in
       fontDir.enable = true;
       fontconfig.enable = true;
       packages = with pkgs; [
+        jetbrains-mono
         fira-code
         fira-code-symbols
         dejavu_fonts

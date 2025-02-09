@@ -68,6 +68,7 @@
     services.thermald.enable = true;
     services.udisks2.enable = true;
     services.blueman.enable = true;
+    programs.adb.enable = true;
 
     services.logind = {
       lidSwitch = "suspend";
