@@ -126,7 +126,10 @@ in
           "${blurrule}, class:org.gnome.Nautilus"
           "${blurrule}, class:org.gnome.Calendar"
           "${blurrule}, class:obsidian"
-          "noborder, onworkspace:w[tv1] f[-1], floating:0"
+          "bordersize 0, floating:0, onworkspace:w[tv1]"
+          "rounding 0, floating:0, onworkspace:w[tv1]"
+          "bordersize 0, floating:0, onworkspace:f[1]"
+          "rounding 0, floating:0, onworkspace:f[1]"
         ];
         
         bind = [
@@ -177,7 +180,7 @@ in
 
         layerrule = [
           "blur, waybar"
-          "ignorealpha 0.875, waybar"
+          "ignorealpha 0.9, waybar"
           "blur, nwg-drawer"
         ];
 

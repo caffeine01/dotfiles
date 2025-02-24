@@ -70,7 +70,7 @@ in
       slurp
       grim
       wl-clipboard
-      pamixer
+      #pamixer
       playerctl
       ydotool
       fuzzel
@@ -82,7 +82,7 @@ in
       wlogout
       clang
       clang-tools
-      pavucontrol
+      pwvucontrol
     ];
     };
   };

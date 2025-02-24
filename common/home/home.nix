@@ -20,12 +20,6 @@ with lib;
       wayland.windowManager.hyprland.package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       wayland.windowManager.hyprland.systemd.variables = ["--all"];
 
-      home.sessionVariables = {
-        QT_QPA_PLATFORM = "wayland";
-        SDL_VIDEODRIVER = "wayland";
-        XDG_SESSION_TYPE = "wayland";
-      };
-
       home.packages = [
         inputs.nwg-drawer.packages.${pkgs.system}.default
         (lid-switch)
