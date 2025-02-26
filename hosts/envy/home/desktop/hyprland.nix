@@ -25,7 +25,7 @@ in
           "eDP-1,1920x1080@60,0x0,1"
         ];
         windowrulev2 = [
-          "plugin:hyprbars:nobar, onworkspace:m[HDMI-A-1]"
+          "plugin:hyprbars:nobar, onworkspace:m[negative:eDP-1]"
         ];
         device = [
           {
