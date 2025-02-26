@@ -1,4 +1,10 @@
-{ config, lib, pkgs, nixpkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  nixpkgs,
+  ...
+}:
 let
   cfg = config.libadwaita-without-adwaita;
 in
@@ -31,13 +37,12 @@ with lib;
             });
           })
         ];
-        system.replaceDependencies.replacements = with pkgs; [
-          {
-            oldDependency = libadwaita.out;
-            newDependency = libadwaita-without-adwaita.out;
-          }
-        ];
+      system.replaceDependencies.replacements = with pkgs; [
+        {
+          oldDependency = libadwaita.out;
+          newDependency = libadwaita-without-adwaita.out;
+        }
+      ];
     })
   ];
 }
-

@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}: 
+{ pkgs, inputs, ... }:
 {
   xdg.portal = {
     enable = true;

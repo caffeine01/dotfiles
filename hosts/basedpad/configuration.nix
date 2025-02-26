@@ -2,16 +2,21 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }:
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
   hardware.graphics = {
@@ -27,8 +32,8 @@
       enable = true;
       powerOnBoot = true;
       settings = {
-	      General = {
-		      Experimental = true;
+        General = {
+          Experimental = true;
         };
       };
     };
@@ -47,11 +52,11 @@
     loader.systemd-boot.enable = false;
     loader.grub = {
       enable = true;
-      device="/dev/sda";
+      device = "/dev/sda";
     };
   };
   hardware.enableRedistributableFirmware = true;
-  
+
   #adb
   programs.adb.enable = true;
 
@@ -99,5 +104,3 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
 }
-
-

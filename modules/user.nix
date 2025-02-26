@@ -1,6 +1,11 @@
-{ lib, config, inputs, ... }:
+{
+  lib,
+  config,
+  inputs,
+  ...
+}:
 with lib;
-let 
+let
   cfg = config.userModule;
 in
 {
@@ -19,12 +24,12 @@ in
     };
     extraGroups = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
       description = "Additional groups";
     };
     userPackages = mkOption {
       type = types.listOf types.package;
-      default = [];
+      default = [ ];
       description = "User packages";
     };
     enableHomeManager = mkOption {
@@ -34,12 +39,12 @@ in
     };
     homeManagerConfig = mkOption {
       type = types.attrs;
-      default = {};
+      default = { };
       description = "Home-manager configuration";
     };
     additionalConfig = mkOption {
       type = types.attrs;
-      default = {};
+      default = { };
       description = "Additional configuration";
     };
   };
@@ -62,11 +67,10 @@ in
       home-manager.extraSpecialArgs = { inherit inputs; };
       home-manager.users."${cfg.userName}" = mkMerge [
         {
-        home.stateVersion = "24.11";
+          home.stateVersion = "24.11";
         }
         cfg.homeManagerConfig
       ];
-    }
-    )
+    })
   ];
 }

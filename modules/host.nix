@@ -5,7 +5,7 @@ in
 with lib;
 {
   imports = [
-    ../common/system 
+    ../common/system
   ];
 
   options.host = {

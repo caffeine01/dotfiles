@@ -1,4 +1,9 @@
-{ inputs, pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 let
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
 in
@@ -11,12 +16,12 @@ in
     settings = {
       misc.vfr = true;
       monitor = [
-        "LVDS-1,1600x900@60,0x0,1,vrr,1"          
+        "LVDS-1,1600x900@60,0x0,1,vrr,1"
       ];
 
       decoration = {
         shadow.enabled = lib.mkForce false;
-	blur.enabled = lib.mkForce false;
+        blur.enabled = lib.mkForce false;
       };
 
       animations.enabled = lib.mkForce false;

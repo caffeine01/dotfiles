@@ -19,12 +19,12 @@
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland"; 
+      inputs.hyprland.follows = "hyprland";
     };
 
     hyprgrass = {
       url = "github:horriblename/hyprgrass";
-      inputs.hyprland.follows = "hyprland"; 
+      inputs.hyprland.follows = "hyprland";
     };
 
     nwg-drawer = {
@@ -34,47 +34,62 @@
     };
 
   };
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-  {
-    nixosCommonSystem = host: let
-      hostConfig = if host ? hostConfig then host.hostConfig else if host ? hostName then ./hosts/${host.hostName} else null;
-    in  nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        home-manager.nixosModules.home-manager
-        ./modules/isaac.nix
-        ./modules/host.nix 
-        ./modules/libadwaita-without-adwaita.nix
-        {
-          inherit host;
-          imports = [ hostConfig ];
-          isaac.enable = true;
-          isaac.useHomeManager = true;
-          libadwaita-without-adwaita.enable = true;
-        }
-      ];
-    };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    {
+      nixosCommonSystem =
+        host:
+        let
+          hostConfig =
+            if host ? hostConfig then
+              host.hostConfig
+            else if host ? hostName then
+              ./hosts/${host.hostName}
+            else
+              null;
+        in
+        nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            home-manager.nixosModules.home-manager
+            ./modules/isaac.nix
+            ./modules/host.nix
+            ./modules/libadwaita-without-adwaita.nix
+            {
+              inherit host;
+              imports = [ hostConfig ];
+              isaac.enable = true;
+              isaac.useHomeManager = true;
+              libadwaita-without-adwaita.enable = true;
+            }
+          ];
+        };
 
-    nixosConfigurations = {
-      envy = self.nixosCommonSystem {
-        hostName = "envy";
-        common = true;
-        laptop = true;
-        ryzen = true;
-      };
-      aorus = self.nixosCommonSystem {
-        hostName = "aorus";
-        common = true;
-        laptop = false;
-        ryzen = true;
-      };
-      basedpad = self.nixosCommonSystem {
-        hostName = "basedpad";
-        common = true;
-        laptop = true;
-        ryzen = false;
+      nixosConfigurations = {
+        envy = self.nixosCommonSystem {
+          hostName = "envy";
+          common = true;
+          laptop = true;
+          ryzen = true;
+        };
+        aorus = self.nixosCommonSystem {
+          hostName = "aorus";
+          common = true;
+          laptop = false;
+          ryzen = true;
+        };
+        basedpad = self.nixosCommonSystem {
+          hostName = "basedpad";
+          common = true;
+          laptop = true;
+          ryzen = false;
+        };
       };
     };
-  };
 }

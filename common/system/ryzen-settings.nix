@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
 let
   cfg = config.ryzen-settings;
@@ -15,7 +20,13 @@ in
     boot.blacklistedKernelModules = mkMerge [ [ "k10temp" ] ];
     boot.extraModulePackages = mkMerge [ [ config.boot.kernelPackages.zenpower ] ];
     boot.kernelModules = mkMerge [ [ "zenpower" ] ];
-    boot.kernelParams = mkMerge [ [ "processor.max_cstate=5" "amd_pstate=${pstate}" ] (mkIf isLaptop [ "amdgpu.abmlevel=0" ])  ];
+    boot.kernelParams = mkMerge [
+      [
+        "processor.max_cstate=5"
+        "amd_pstate=${pstate}"
+      ]
+      (mkIf isLaptop [ "amdgpu.abmlevel=0" ])
+    ];
     powerManagement.enable = mkDefault true;
     powerManagement.cpuFreqGovernor = mkDefault "schedutil";
   };

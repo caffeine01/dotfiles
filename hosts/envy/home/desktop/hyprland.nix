@@ -1,4 +1,9 @@
-{ inputs, pkgs, lib, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 let
   hyprland-plugins = inputs.hyprland-plugins.packages.${pkgs.system};
 in

@@ -42,7 +42,6 @@ in
       ];
     };
 
-    
     environment.sessionVariables = {
       XDG_CURRENT_DESKTOP = "Hyprland";
       XDG_SESSION_TYPE = "wayland";
@@ -55,7 +54,7 @@ in
       CLUTTER_BACKEND = "wayland";
       GDK_BACKEND = "wayland";
 
-      QT_QPA_PLATFORM = "wayland";
+      #QT_QPA_PLATFORM = "wayland"; causes android studio to fuck up so no for now
     };
 
     # Make steam work

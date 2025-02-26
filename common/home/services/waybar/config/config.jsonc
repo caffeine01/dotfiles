@@ -71,7 +71,7 @@
 
   "clock": {
     "format": " {:%H:%M}",
-    "format-alt": " {:%m-%d-%Y}",
+    "format-alt": " {:%d-%m-%Y}",
     "on-click-right": "uwsm app -- gnome-calendar"
   },
 

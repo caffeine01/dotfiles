@@ -2,13 +2,18 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, inputs, ... }:
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./services
-    ];
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+    ./services
+  ];
 
   ryzen-settings.enable = true; # enable the pstate fixes n whatnot
 
@@ -45,14 +50,14 @@
     loader.grub = {
       enable = true;
       efiSupport = true;
-      devices=[ "nodev" ];
+      devices = [ "nodev" ];
     };
     initrd.kernelModules = [ "amdgpu" ];
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  programs.coolercontrol.enable = true; #nzxt kraken
-  
+  programs.coolercontrol.enable = true; # nzxt kraken
+
   # Audio services.
   services.pipewire = {
     extraConfig.pipewire."92-low-latency" = {
@@ -64,7 +69,7 @@
       };
     };
   };
-  
+
   #adb
   programs.adb.enable = true;
 
@@ -112,5 +117,3 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
 }
-
-
