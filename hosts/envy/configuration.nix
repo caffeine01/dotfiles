@@ -50,20 +50,6 @@
     ];
   };
 
-  #services.greetd = let
-  #  session = {
-  #     command = "${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop";
-  #     user = "isaac";
-  #   };
-  #in {
-  #  enable = true;
-  #  settings = {
-  #    terminal.vt = 1;
-  #    default_session = session;
-  #    initial_session = session;
-  #  };
-  #};
-
   services.fwupd.enable = true;
   services.thermald.enable = true;
   services.udisks2.enable = true;
@@ -79,18 +65,6 @@
   #virt-manager
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
-  #virtualisation.libvirtd.qemu.package = pkgs.qemu_full;
-
-  #qemu patch
-  #nixpkgs.overlays = with pkgs; [
-  #  (self: super: {
-  #    qemu_full = super.qemu_full.overrideAttrs (oldAttrs: {
-  #      postPatch = oldAttrs.postPatch + ''
-  #        sed -i 's/GUI_REFRESH_INTERVAL_DEFAULT 30/GUI_REFRESH_INTERVAL_DEFAULT 16/g' include/ui/console.h
-  #      '';
-  #    });
-  #  })
-  #];
 
   boot = {
     loader.systemd-boot.enable = false;
@@ -102,14 +76,6 @@
     };
     kernelParams = [ ''acpi_osi="!Windows 2020"'' ];
     kernelPackages = pkgs.linuxPackages_latest;
-    #kernelPatches = [
-    #  {
-    #name = "stop-all-kbz212615";
-    #patch = ./stop_all_kbz212615.patch;
-    #name = "clear_interrupts_kbz212615";
-    #patch = ./clear_interrupts_kbz212615.patch;
-    #  }
-    #];
     initrd.kernelModules = [ "amdgpu" ];
   };
 

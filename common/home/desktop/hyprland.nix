@@ -127,10 +127,10 @@ with lib;
             "${blurrule}, class:kitty"
             "${blurrule}, class:org.gnome.Nautilus"
             "${blurrule}, class:org.gnome.Calendar"
+            "${blurrule}, class:org.gnome.Evolution"
             "${blurrule}, class:obsidian"
             "noborder, floating:0, onworkspace:w[tv1]"
             "norounding, floating:0, onworkspace:w[tv1]"
-            "plugin:hyprbars:nobar, onworkspace:m[negative:eDP-1]"
           ];
 
           bind = [
@@ -223,7 +223,7 @@ with lib;
               bar_title_enabled = true;
               bar_text_align = "left";
               bar_part_of_window = true;
-              bar_text_font = "Fira Code";
+              bar_text_font = "Jetbrains Mono";
               hyprbars-button = [
                 "rgb(282828), 25, , hyprctl dispatch killactive, rgb(ebdbb2)"
                 "rgb(282828), 25, , hyprctl dispatch fullscreen, rgb(ebdbb2)"
