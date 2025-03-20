@@ -109,11 +109,11 @@ with lib;
               "easeOut, 0, 0, 0.58, 1"
             ];
             animation = [
-              "border, 1, 1.5, ease"
+              "border, 1, 2.5, ease"
               "borderangle, 1, 30, easeCirc, once"
-              "fade, 1, 2, ease"
-              "windows, 1, 2, ease, popin 80%"
-              "windowsMove, 1, 2, easeOut"
+              "fade, 1, 2.5, ease"
+              "windows, 1, 2.5, ease, popin 80%"
+              "windowsMove, 1, 2.5, easeOut"
               "workspaces, 1, 2, easeOut, slide"
             ];
           };
