@@ -83,15 +83,20 @@ with lib;
               color = "rgba(32,32,32,1)";
               ignore_window = false;
               offset = "0, 0";
-              range = 8;
+              range = 12;
               render_power = 2;
               scale = 1;
             };
 
             blur = {
               enabled = true;
-              size = 4;
+              size = 8;
               passes = 3;
+              new_optimizations = "on";
+              noise = 0.01;
+              contrast = 0.9;
+              brightness = 0.8;
+              popups = true;
             };
           };
 
