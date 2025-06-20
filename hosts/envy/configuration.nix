@@ -54,7 +54,13 @@
   services.thermald.enable = true;
   services.udisks2.enable = true;
   services.blueman.enable = true;
+  services.flatpak.enable = true;
   programs.adb.enable = true;
+  programs.kdeconnect.enable = true;
+
+  services.flatpak.packages = [
+    "org.vinegarhq.Sober"
+  ];
 
   services.logind = {
     lidSwitch = "suspend";

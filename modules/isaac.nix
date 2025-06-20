@@ -72,7 +72,6 @@ in
         libGL
         libreoffice
         lutris
-        nodejs_23
         obs-studio
         obsidian
         openssl

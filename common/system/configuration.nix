@@ -60,6 +60,10 @@ in
     # Make steam work
     hardware.graphics.enable32Bit = true;
 
+    #bought a split keyboard oh em gee 
+    hardware.keyboard.qmk.enable = true;
+    services.udev.packages = [ pkgs.via pkgs.qmk-udev-rules ];
+
     services.xserver = {
       enable = true;
       displayManager.gdm.enable = true;
@@ -102,6 +106,8 @@ in
       orca # screen reader
     ];
 
+    services.orca.enable = lib.mkForce false;
+
     # Justin Case
     services.printing.enable = true;
 
@@ -114,14 +120,14 @@ in
       pulse.enable = true;
       jack.enable = true;
       wireplumber.enable = true;
-      #extraConfig.pipewire."92-low-latency" = {
-      #  "context.properties" = {
-      #    "default.clock.rate" = 44100;
-      #    "default.clock.quantum" = 512;
-      #    "default.clock.min-quantum" = 512;
-      #    "default.clock.max-quantum" = 512;
-      #  };
-      #};
+      extraConfig.pipewire."92-low-latency" = {
+        "context.properties" = {
+          "default.clock.rate" = 48000;
+          "default.clock.quantum" = 128;
+          "default.clock.min-quantum" = 128;
+          "default.clock.max-quantum" = 128;
+        };
+      };
     };
 
     environment.systemPackages = with pkgs; [
@@ -135,6 +141,7 @@ in
       pkg-config
       home-manager
       jq
+      via #funny keyboard
     ];
 
     nixpkgs.config.allowUnfree = true;

@@ -19,6 +19,7 @@ window#waybar > box {
   box-shadow: 0px 0px 2px 2px rgba(32,32,32,1);
 }
 
+#custom-trading212,
 #custom-launcher,
 #workspaces,
 #clock,
@@ -39,6 +40,7 @@ window#waybar > box {
   transition: ease 0.15s;
 }
 
+#custom-trading212:hover,
 #custom-launcher:hover,
 #workspaces button:hover,
 #workspaces button.active:hover,
@@ -113,3 +115,19 @@ window#waybar > box {
     color: #458588;
 }
 
+#custom-trading212.up {
+    color: #4CAF50; /* Green */
+}
+
+#custom-trading212.down {
+    color: #F44336; /* Red */
+}
+
+#custom-trading212.neutral {
+    color: #FFFFFF; /* White, or your default text color */
+}
+
+#custom-trading212.error {
+    color: #FFEB3B; /* Yellow for error */
+    font-weight: bold;
+}

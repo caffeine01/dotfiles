@@ -31,6 +31,7 @@ with lib;
 
       home.packages = [
         inputs.nwg-drawer.packages.${pkgs.system}.default
+        inputs.quickshell.packages.${pkgs.system}.default
         (lid-switch)
         (reset-network)
       ];

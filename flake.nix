@@ -33,12 +33,23 @@
       inputs.systems.url = "github:nix-systems/default-linux";
     };
 
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+
+      # THIS IS IMPORTANT
+      # Mismatched system dependencies will lead to crashes and other issues.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
+
   };
   outputs =
     {
       self,
       nixpkgs,
       home-manager,
+      nix-flatpak,
       ...
     }@inputs:
     {
@@ -61,12 +72,13 @@
             ./modules/isaac.nix
             ./modules/host.nix
             ./modules/libadwaita-without-adwaita.nix
+            nix-flatpak.nixosModules.nix-flatpak
             {
               inherit host;
               imports = [ hostConfig ];
               isaac.enable = true;
               isaac.useHomeManager = true;
-              libadwaita-without-adwaita.enable = true;
+              libadwaita-without-adwaita.enable = false;
             }
           ];
         };

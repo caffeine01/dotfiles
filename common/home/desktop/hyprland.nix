@@ -39,7 +39,9 @@ with lib;
           ];
 
           input = {
-            kb_layout = "us";
+            kb_layout = ["us"];
+            kb_variant = ["colemak_dh_ortho"];
+            kb_options = "grp:alt_shift_toggle";
             follow_mouse = 1;
             touchpad = {
               natural_scroll = true;
@@ -67,6 +69,7 @@ with lib;
             border_size = 2;
             "col.active_border" = "rgb(d65d0e) rgb(fe8019) rgb(ebdbb2) rgb(83a598) rgb(458588) 45deg";
             "col.inactive_border" = "rgb(3c3836)";
+            allow_tearing = true;
           };
 
           dwindle = {
@@ -129,13 +132,12 @@ with lib;
           };
 
           windowrulev2 = [
-            "${blurrule}, class:kitty"
-            "${blurrule}, class:org.gnome.Nautilus"
-            "${blurrule}, class:org.gnome.Calendar"
-            "${blurrule}, class:org.gnome.Evolution"
-            "${blurrule}, class:obsidian"
+            "${blurrule}, fullscreen:0"
             "noborder, floating:0, onworkspace:w[tv1]"
             "norounding, floating:0, onworkspace:w[tv1]"
+            "immediate, class:osu!"
+            "float,class:^(fl64.exe)$"
+            "move cursor, class:^(fl64.exe)$,title:^()$"
           ];
 
           bind = [
