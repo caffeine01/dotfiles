@@ -64,13 +64,13 @@ in
     hardware.keyboard.qmk.enable = true;
     services.udev.packages = [ pkgs.via pkgs.qmk-udev-rules ];
 
-    services.xserver = {
+    services.displayManager.gdm = {
       enable = true;
-      displayManager.gdm.enable = true;
-      displayManager.gdm.wayland = true;
-      # Fallback
-      desktopManager.gnome.enable = true;
+      wayland = true;
     };
+    # Fallback
+    services.desktopManager.gnome.enable = true;
+    
 
     # network manager
     networking.networkmanager.enable = true;
